@@ -1,4 +1,13 @@
 """
+enter virtual environment with
+
+$ source venv/bin/activate
+
+start flask with 
+
+$ flask run
+
+-------
 
 send POST request with
 
@@ -15,11 +24,11 @@ send POST request with
 """
 from flask import Flask, request, jsonify
 
-from generate_assignments import generate_assignments
+from .generate_assignments import generate_assignments
 
 app = Flask(__name__)
 
-app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'yourId@gmail.com'
 app.config['MAIL_PASSWORD'] = '*****'
@@ -35,6 +44,5 @@ def hello_world():
 def post(request):
     data = request.get_json()
     assignments = generate_assignments(data['santas'])
-    print(assignments)
     return jsonify(assignments)
     # return "Sent emails!"
